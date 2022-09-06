@@ -23,6 +23,12 @@ Publish the default configuration file and migration file
 php artisan vendor:publish --tag="nova-settings-tool"
 ```
 
+Run migrate command to create settings table
+
+```bash
+php artisan migrate
+```
+
 Register the tool with Nova in the `tools` method of your `NovaServiceProvider`:
 
 ```php
