@@ -1,0 +1,50 @@
+{
+    "name": "masoudi/nova-settings-tool",
+    "description": "A Laravel Nova tool to manage application settings.",
+    "authors": [
+        {
+            "name": "Reza Masoudi",
+            "email": "dev.masoudi@gmail.com"
+        }
+    ],
+    "keywords": [
+        "laravel",
+        "nova",
+        "settings",
+        "tool"
+    ],
+    "homepage": "https://github.com/rezamasoudi/nova-settings-tool",
+    "license": "MIT",
+    "require": {
+        "php": "^7.3|^8.0",
+        "laravel/nova": "^4.0",
+        "spatie/valuestore": "^1.3"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^7.4",
+        "phpunit/phpunit": "^9.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Masoudi\\Nova\\Tool\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Masoudi\\Nova\\Tool\\SettingsToolServiceProvider"
+            ]
+        }
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
