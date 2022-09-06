@@ -14,7 +14,7 @@ This package based on [bakerkretzmar/nova-settings-tool](https://github.com/bake
 Install the package via Composer in any Laravel app using [Nova](https://nova.laravel.com):
 
 ```bash
-composer require bakerkretzmar/nova-settings-tool
+composer require masoudi/nova-settings-tool
 ```
 
 > Nova Settings Tool v2 requires Nova 4—for older versions of Nova, use v1 of this package.
