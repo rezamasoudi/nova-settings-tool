@@ -40,6 +40,19 @@ use Masoudi\Nova\Tool\SettingsTool;
     }
 ```
 
+You can save different settings for any user by label group in `NovaServiceProvider`:
+
+```php
+    use Masoudi\Nova\Tool\SettingsTool;
+
+    public function boot()
+    {
+        Nova::serving(function () {
+            SettingsTool::setGroupLabel(auth()->id());
+        });
+    }
+```
+
 ## Usage
 
 Settings are declared in a `nova-settings-tool.php` config file. This file specifies where settings are stored, what the tool’s title is in Nova’s sidebar, the layout of the settings page, and metadata about the settings themselves.
