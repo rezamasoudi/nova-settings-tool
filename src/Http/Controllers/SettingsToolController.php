@@ -3,6 +3,8 @@
 namespace Masoudi\Nova\Tool\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Masoudi\Nova\Tool\Events\SettingsChanged;
+use Masoudi\Nova\Tool\Models\Setting;
 use Masoudi\Nova\Tool\Services\SettingService;
 use Masoudi\Nova\Tool\SettingsTool;
 use Masoudi\Nova\Tool\Support\Translate;
@@ -40,6 +42,12 @@ class SettingsToolController
                 'value' => $this->settingService->getSettingByKey($setting['key'], $values) ?? null,
             ], $setting);
 
+            if ($item['type'] == 'toggle') {
+                if (!filter_var($item['value'], FILTER_VALIDATE_BOOL)) {
+                    $item['value'] = null;
+                }
+            }
+
             $item = $this->applyTranslation($item);
 
             return $item;
@@ -56,9 +64,13 @@ class SettingsToolController
 
     public function write(Request $request)
     {
+        $oldSettings = Setting::all();
+
         foreach ($request->all() as $key => $value) {
             $this->settingService->updateOrCreate($key, $value, SettingsTool::$groupLabel);
         }
+
+        event(new SettingsChanged($request->all(), $oldSettings->toArray()));
 
         return response()->json();
     }
